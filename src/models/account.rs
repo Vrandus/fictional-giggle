@@ -92,10 +92,14 @@ impl Account {
     pub fn to_output(&self) -> AccountOutput {
         AccountOutput {
             client_id: self.client_id,
-            available: self.available,
-            held: self.held,
-            total: self.total,
+            available: rounded(self.available),
+            held: rounded(self.held),
+            total: rounded(self.total),
             locked: self.locked,
         }
     }
+}
+
+fn rounded(val: f64) -> f64 {
+    (val * 10000.0).round() / 10000.0
 }

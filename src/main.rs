@@ -10,7 +10,7 @@ use fictional_giggle::{
 
 fn main() {
     Builder::from_default_env()
-        .filter_level(log::LevelFilter::Off) // Show info and above
+        .filter_level(log::LevelFilter::Off) // Change when debugging
         .target(Target::Stdout)
         .init();
 
