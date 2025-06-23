@@ -1,0 +1,10 @@
+[package]
+name = "fictional-giggle"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+csv = "1.3.1"
+env_logger = "0.11.8"
+log = { version = "0.4"}
+serde = { version = "1.0.219", features = ["derive"] }
