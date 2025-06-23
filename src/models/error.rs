@@ -23,9 +23,6 @@ pub enum TransactionValidationError {
     InvalidAmount,
     ClientMismatch,
     InvalidTransactionState,
-    CsvError(String),
-    IoError(String),
-    DataAccessError(String),
 }
 
 impl fmt::Display for TransactionValidationError {
@@ -46,11 +43,6 @@ impl fmt::Display for TransactionValidationError {
             TransactionValidationError::ClientMismatch => write!(f, "Client ID mismatch"),
             TransactionValidationError::InvalidTransactionState => {
                 write!(f, "Invalid transaction state")
-            }
-            TransactionValidationError::CsvError(msg) => write!(f, "CSV error: {}", msg),
-            TransactionValidationError::IoError(msg) => write!(f, "IO error: {}", msg),
-            TransactionValidationError::DataAccessError(msg) => {
-                write!(f, "Data access error: {}", msg)
             }
         }
     }

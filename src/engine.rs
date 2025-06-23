@@ -56,7 +56,7 @@ where
         );
 
         let client = self.accounts.get_or_create_account(record.client_id)?;
-        client.deposit(amount)?;
+        client.deposit(amount.unwrap())?;
 
         self.transactions.save_transaction(transaction)?;
         Ok(())
@@ -72,7 +72,7 @@ where
         }
 
         let client = self.accounts.get_or_create_account(record.client_id)?;
-        client.withdraw(amount)?;
+        client.withdraw(amount.unwrap())?;
 
         let transaction = Transaction::new(
             record.transaction_id,
@@ -102,7 +102,7 @@ where
 
         let amount = original_tx.amount;
         let client = self.accounts.get_or_create_account(record.client_id)?;
-        client.hold_funds(amount)?;
+        client.hold_funds(amount.unwrap())?;
 
         original_tx.transaction_state = crate::models::TransactionState::Disputed;
         Ok(())
@@ -126,7 +126,7 @@ where
 
         let amount = original_tx.amount;
         let client = self.accounts.get_or_create_account(record.client_id)?;
-        client.release_held_funds(amount)?;
+        client.release_held_funds(amount.unwrap())?;
 
         original_tx.transaction_state = crate::models::TransactionState::Resolved;
         Ok(())
@@ -150,7 +150,7 @@ where
 
         let amount = original_tx.amount;
         let client = self.accounts.get_or_create_account(record.client_id)?;
-        client.chargeback(amount)?;
+        client.chargeback(amount.unwrap())?;
 
         original_tx.transaction_state = crate::models::TransactionState::ChargedBack;
         Ok(())

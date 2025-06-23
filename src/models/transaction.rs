@@ -18,7 +18,7 @@ pub struct TransactionRecord {
     pub client_id: u16,
     #[serde(rename = "tx")]
     pub transaction_id: u32,
-    pub amount: f64,
+    pub amount: Option<f64>,
 }
 
 #[derive(Debug, Clone)]
@@ -26,7 +26,7 @@ pub struct Transaction {
     pub id: u32,
     pub client_id: u16,
     pub transaction_type: TransactionType,
-    pub amount: f64,
+    pub amount: Option<f64>,
     pub transaction_state: TransactionState,
 }
 
@@ -39,12 +39,17 @@ pub enum TransactionState {
 }
 
 impl Transaction {
-    pub fn new(id: u32, client_id: u16, transaction_type: TransactionType, amount: f64) -> Self {
+    pub fn new(
+        id: u32,
+        client_id: u16,
+        transaction_type: TransactionType,
+        amount: Option<f64>,
+    ) -> Self {
         Self {
             id,
             client_id,
             transaction_type,
-            amount,
+            amount: amount,
             transaction_state: TransactionState::Completed,
         }
     }
